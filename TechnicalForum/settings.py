@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'TechnicalForum.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'forums',
-        'USER': 'root',
-        'PASSWORD':'admin',
-        'HOST': 'localhost',
+        'NAME': 'TechForums$forums',
+        'USER': 'TechForums',
+        'PASSWORD':'admin@1234',
+        'HOST': 'TechForums.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
