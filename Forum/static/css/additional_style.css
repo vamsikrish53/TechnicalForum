@@ -1,0 +1,116 @@
+@font-face
+{
+    font-family: 'Amaranth';
+    src: url('../fonts/Amaranth-Regular.ttf');
+}
+@font-face
+{
+    font-family: 'Courgette';
+    src: url('../fonts/Courgette-Regular.ttf');
+}
+@font-face
+{
+    font-family: 'SourceSansPro-Semibold';
+    src: url('../fonts/SourceSansPro-Semibold.ttf');
+}
+.box
+{
+    border-color: #2B2B2B;
+    border-style: inset;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: 15px 15px;
+    background: rgba(255,255,255,0.9);
+}
+body
+{
+    margin: 60px 0 60px 0;
+    background-color: #F5F4EB;
+    font-family: Amaranth;
+}
+textarea
+{
+    height:200px;
+    min-height:200px;
+    max-height:200px;
+    resize: none;
+}
+hr
+{
+    border-color: #999999;
+    padding-bottom:0;
+}
+.intro-text
+{
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+a, h1, h2, h3, h4, h5, h6
+{
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+html, body, .container-table
+{
+    height: 100%;
+}
+.container-table
+{
+    display: table;
+}
+.vertical-center-row
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+.underline
+{
+    border-top: 3px double #8c8b8b;
+}
+.dashed_line
+{
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+.header_line
+{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+    max-width: 400px;
+}
+.user_details
+{
+    border: solid;
+    padding:5px 0 5px 0;
+    margin-top: 10px;
+}
+
+.comment_line
+{
+    margin: 0 0 0 0;
+}
+p
+{
+    font-size: small;
+    color: #333;
+    font-family: 'Muli', sans-serif;
+    margin-bottom: 15px;
+}
+a:hover
+{
+    text-decoration:none;
+}
+blockquote
+{
+    border-left: 0;
+}
+.user_menu
+{
+    padding-top:40px;
+}

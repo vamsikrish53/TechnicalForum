@@ -1,0 +1,27 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Update Question{% endblock %}
+{% block content %}
+
+    <hr class="underline">
+    <h3 class="intro-text text-center">
+        <strong>Update Question</strong>
+    </h3>
+
+    <hr class="underline">
+    <div class="box">
+        <form action="/home_page/update_question/{{ question_details.id }}/add_question" method="get">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" name="question_title" value="{{ question_details.question_title }}" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="question_description" required>{{ question_details.question_description }}</textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="question_tags" value="{{ question_details.question_tags }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Update Your Question</button>
+        </form>
+    </div>
+
+{% endblock %}

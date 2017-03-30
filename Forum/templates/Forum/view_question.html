@@ -1,0 +1,124 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | {{ question_details.question_title }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <a href=""><h4>{{ question_details.question_title }}</h4></a>
+        <hr class="underline">
+    </div>
+    <div class="row">
+            <pre>{{ question_details.question_description }}</pre>
+    </div>
+    <div class="row" style="padding-top:30px;">
+        <div class="col-sm-9 pull-left tag_details">
+            {% for tag in tag_details %}
+                <a href="/home_page/tag/{{ tag.id }}"><span class="label label-default">{{ tag.tag_name }}</span></a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row" style="padding:0 20px 30px 0;">
+        {% if current_user_id == user_details.id %}
+            <div class="col-md-5 pull-left user_menu">
+                <div class="col-md-2">
+                    <a href="/home_page/update_question/{{ question_details.id }}">update</a>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <a href="/home_page/delete_question/{{ question_details.id }}">delete</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="col-md-2 user_details text-center pull-right">
+            <span>Questioned by</span>
+            <h4>{{ user_details.username }}</h4>
+        </div>
+    </div>
+    <div>
+        {% if question_details.comments %}
+            {% for comment in question_details.comments %}
+                <hr class="dashed_line comment_line">
+                <blockquote>
+                    <div class="col-sm-9">
+                        <p>{{ comment.comment_description }}</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <small class="pull-right"><cite>by {{ comment.commented_by }}</cite></small>
+                    </div>
+                </blockquote>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <form action="/home_page/post_comment_to_question/{{ question_details.id }}/" method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="comment" placeholder="Add Comment Description Here" required>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Add Comment</button>
+            </span>
+        </div>
+    </form>
+    <h3 class="intro-text">
+        <strong>Answers</strong>
+    </h3>
+    <hr class="underline">
+    {% if not answers_list %}
+        <h4 class="intro-text text-center">
+            <strong>No Answers Posted Yet!!</strong>
+        </h4>
+    {% else %}
+        {% for answer in answers_list %}
+            <div class="row">
+                <pre>{{ answer.answer_description }}</pre>
+            </div>
+            <div class="row" style="padding:0 20px 30px 0;">
+                {% if current_user_id == answer.answered_by_id %}
+                    <div class="col-md-5 pull-left user_menu">
+                        <div class="col-md-2">
+                            <a href="/home_page/update_answer/{{ answer.id }}">update</a>
+                        </div>
+                        <div class="col-md-2 col-md-offset-1">
+                            <a href="/home_page/delete_answer/{{ answer.id }}">delete</a>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-md-2 user_details text-center pull-right">
+                    <span>Answered by</span>
+                    <h4>{{ answer.answered_by }}</h4>
+                </div>
+            </div>
+            <div>
+                {% if answer.comments %}
+                    {% for comment in answer.comments %}
+                        <hr class="dashed_line comment_line">
+                        <blockquote>
+                            <div class="col-sm-9">
+                                <p>{{ comment.comment_description }}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                <small class="pull-right"><cite>by {{ comment.commented_by }}</cite></small>
+                            </div>
+                        </blockquote>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <form action="/home_page/post_comment_to_answer/{{ answer.id }}/" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="comment" placeholder="Add Comment Description Here" required>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">Add Comment</button>
+                    </span>
+                </div>
+            </form>
+            <hr class="underline">
+        {% endfor %}
+    {% endif %}
+    <h3 class="intro-text" style="padding: 10px 0 10px 0">
+        <strong>Post Your Answer</strong>
+    </h3>
+    <div class="box" style="margin-bottom: 60px">
+        <form action="/home_page/post_answer/{{ question_details.id }}/add_answer" method="get">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control" name="answer_description" placeholder="Add your answer description"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Post Your Answer</button>
+        </form>
+    </div>
+{% endblock %}

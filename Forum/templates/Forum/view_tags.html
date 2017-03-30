@@ -1,0 +1,11 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Tags{% endblock %}
+{% block content %}
+    {% if tag_details %}
+        {% for tag in tag_details %}
+            <div class="col-sm-2 text-center">
+                <a href="/home_page/tag/{{ tag.id }}"><h4><span class="label label-default">{{ tag.tag_name }}</span></h4></a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

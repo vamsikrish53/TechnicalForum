@@ -1,0 +1,100 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Home{% endblock %}
+{% block content %}
+
+    {% if not questions_list %}
+        {% load staticfiles %}
+        <style>
+            html, body, .container-table {
+                height: 100%;
+            }
+            .container-table {
+                display: table;
+            }
+            .vertical-center-row {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            h1 {
+                color: black;
+                font-size: 3em;
+            }
+        </style>
+    {% endif %}
+
+    <script>
+        function ask_question()
+        {
+            window.location = "ask_question/";
+        }
+        function logout()
+        {
+            window.location = "/logout";
+        }
+        function view_question(id)
+        {
+            window.location = "view_question/"+id+"/";
+        }
+    </script>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TECHNICAL FORUMS</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <form action="search/" name="search" method="get" class="navbar-form navbar-left">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Search with tags...">
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+                <div class="navbar-form navbar-right">
+                    <button type="submit" onclick="logout()" class="btn btn-success">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% if questions_list %}
+        <div class="container" style="padding-top:50px">
+            <div class="col-sm-8">
+                <h4>Top Questions</h4>
+                <hr>
+                <div class="list-group">
+                    {% for question in questions_list %}
+                            <button type="submit" onclick="view_question({{ question.id }})" class="list-group-item">{{ question.question_title }}</button>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="box">
+                    <hr><h4 class="intro-text text-center"><strong>Menu</strong></h4><hr>
+                    <button type="submit" onclick="ask_question()" class="btn btn-primary btn-block">Ask question</button>
+                    <button type="submit" onclick="" class="btn btn-primary btn-block">View all Tags</button>
+                    <button type="submit" onclick="" class="btn btn-primary btn-block">View all Users</button>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container container-table">
+            <div class="row vertical-center-row">
+                <div class="text-center col-md-6 col-md-offset-3">
+                    <div class="row">
+                        <h2><strong>NO QUESTIONS CREATED YET!!</strong></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

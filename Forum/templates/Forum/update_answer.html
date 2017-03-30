@@ -1,0 +1,21 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Update Answer{% endblock %}
+{% block content %}
+
+    <hr class="underline">
+    <h3 class="intro-text text-center">
+        <strong>Update Answer</strong>
+    </h3>
+
+    <hr class="underline">
+    <div class="box">
+        <form action="/home_page/update_answer/{{ answer_details.id }}/add_answer" method="get">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea class="form-control" name="answer_description" required>{{ answer_details.answer_description }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Update Your Answer</button>
+        </form>
+    </div>
+
+{% endblock %}

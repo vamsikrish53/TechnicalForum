@@ -1,0 +1,27 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Ask Question{% endblock %}
+{% block content %}
+
+    <hr class="underline">
+    <h3 class="intro-text text-center">
+        <strong>Ask Question</strong>
+    </h3>
+
+    <hr class="underline">
+    <div class="box">
+        <form action="/home_page/ask_question/add_question" method="get">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" name="question_title" placeholder="What is programming question. Be specific.">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="question_description" placeholder="Add your question description"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="question_tags" placeholder="Atleast one tag such as (python c django). Add as many tags you want.">
+            </div>
+            <button type="submit" class="btn btn-success">Post Your Question</button>
+        </form>
+    </div>
+
+{% endblock %}

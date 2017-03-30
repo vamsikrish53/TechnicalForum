@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Welcome to Technical Forums</title>
+
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/additional_style.css' %}" type="text/css">
+
+        {% load staticfiles %}
+        <style>
+            body
+            {
+                background-image: url({% static 'images/background.jpg' %});
+                background-repeat: no-repeat;
+                background-size: cover;
+                height:100%;
+            }
+            .sign-up-block
+            {
+                padding-top:160px;
+            }
+            @media (max-width: 768px)
+            {
+                .sign-up-block
+                {
+                    padding-top:80px;
+                }
+            }
+        </style>
+
+        {% if default_message %}
+            <script>
+                alert("{{ default_message }}");
+            </script>
+        {% endif %}
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TECHNICAL FORUMS</a>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <form action="/login_validation/" method="post" class="navbar-form navbar-right">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row centered-form">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-8 sign-up-block">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sign Up for Technical Forums  <small>It's free!</small></h3>
+                        </div>
+                        <div class="panel-body">
+                            <form id="signup_form" action="/signup/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-user"></i></div>
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></div>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></div>
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <input type="submit" id="register_button" value="Register" class="btn btn-success btn-block" data-loading-text="Registering...">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                  <p class="navbar-text pull-left">© 2017 - Website Designed by
+                       <a href="#" target="_blank" >CODERS</a>
+                  </p>
+            </div>
+        </div>
+
+        {% load staticfiles %}
+        <script src="{% static 'js/jquery.js' %}"></script>
+        {% load staticfiles %}
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        {% load staticfiles %}
+    </body>
+</html>

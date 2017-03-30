@@ -1,0 +1,42 @@
+{% extends "Forum/header.html" %}
+{% block title %}Forums | Home{% endblock %}
+{% block content %}
+
+
+    {% if questions_list %}
+        <div class="row">
+            <div class="col-sm-8">
+                <h4>Recent Questions</h4>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="/home_page/sortby/active"><h4>Active</h4></a>
+            </div>
+            <div class="col-sm-2 text-center">
+                <a href="/home_page/sortby/voice"><h4>Voice</h4></a>
+            </div>
+        </div>
+        <hr class="underline">
+        <div class="list-group">
+            {% for question in questions_list %}
+                <div class="row">
+                    <div class="col-sm-8">
+                        <a href="/home_page/view_question/{{ question.id }}" ><h5>{{ question.question_title }}</h5></a>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <h5>{{ question.time_difference }}</h5>
+                    </div>
+                    <div class="col-sm-2 text-center">
+                        <h5>{{ question.answer_count }}</h5>
+                    </div>
+                </div>
+                <hr class="dashed_line">
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="col-sm-12">
+            <div class="text-center col-sm-6 col-sm-offset-3">
+                <h2><strong>NO QUESTIONS CREATED YET!!</strong></h2>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

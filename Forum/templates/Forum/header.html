@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'css/additional_style.css' %}" type="text/css">
+
+        {% load staticfiles %}
+        <script src="{% static 'js/jquery.js' %}"></script>
+        {% load staticfiles %}
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        {% load staticfiles %}
+        <script src="{% static 'js/additional_script.js' %}"></script>
+
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TECHNICAL FORUMS</a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <form action="/home_page/search/" name="search" method="get" class="navbar-form navbar-right" required>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="search" placeholder="Search with tags...">
+                        </div>
+                        <button type="submit" class="btn btn-success">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="padding-top:50px">
+        <div class="col-sm-9">
+            {% block content %}
+            {% endblock  %}
+        </div>
+        <div class="col-sm-3">
+            <div class="box">
+                <hr><h4 class="intro-text text-center"><strong>Options</strong></h4><hr>
+                <button type="submit" onclick="home_page()" class="btn btn-primary btn-block">Home</button>
+                <button type="submit" onclick="ask_question()" class="btn btn-primary btn-block">Ask question</button>
+                <button type="submit" onclick="view_tags()" class="btn btn-primary btn-block">View all Tags</button>
+                <button type="submit" onclick="logout()" class="btn btn-primary btn-block">Logout</button>
+            </div>
+        </div>
+    </div>
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                  <p class="navbar-text pull-left">© 2017 - Website Designed by
+                       <a href="#" target="_blank" >CODERS</a>
+                  </p>
+            </div>
+        </div>
+    </body>
+</html>
