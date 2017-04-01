@@ -4,8 +4,11 @@
         <meta charset="UTF-8">
         <title>Welcome to Technical Forums</title>
 
-        {% load staticfiles %}
-        <link rel="stylesheet" href="{% static '/static/css/bootstrap.min.css' %}" type="text/css">
+       
+        <link rel="stylesheet" href="{% static '/static/css/bootstrap.min.css' %}" type="text/css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         {% load staticfiles %}
         <link rel="stylesheet" href="{% static '/static/css/additional_style.css' %}" type="text/css">
 
@@ -108,10 +111,5 @@
             </div>
         </div>
 
-        {% load staticfiles %}
-        <script src="{% static '/static/js/jquery.js' %}"></script>
-        {% load staticfiles %}
-        <script src="{% static '/static/js/bootstrap.min.js' %}"></script>
-        {% load staticfiles %}
     </body>
 </html>
